@@ -4,15 +4,14 @@
 place holder install brew
 
 ### Прописываем эту команду в терминале, чтобы установить nasm
-
+[источник](https://github.com/orgs/Homebrew/discussions/3526)
+ 
 ```brew install nasm```
 
 ### Прописываем это, чтобы установить brew для mac X86
 ```arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
 
 
-[источник](https://github.com/orgs/Homebrew/discussions/3526)
- 
 
 ### Прописываем это, чтобы создать псевдоним для скачанного brew, чтобы он не путался с оригинальным
 ``` alias ibrew='arch -x86_64 /usr/local/bin/brew'```
@@ -44,6 +43,9 @@ place holder install brew
 
 # Важно!!!!!!!!! В мейн файле .c использовать ```exit(0)``` вместо ```return 0```
 
+
+
+# Это не надо читать и делать, это просто описание моих похождений
 # Дебаг не через консоль это ебаный пиздец! оно вам реально не надо
 ![5](/images/5.png)
 
