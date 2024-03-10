@@ -1,34 +1,48 @@
-# Как слинковать *.cpp и *.s для X86 на mac m2
+# Как слинковать *.c и *.s для X86 на mac m2
 
-## Нужно установить brew
-## Установка nasm
+### Нужно установить brew
+place holder install brew
+
+### Прописываем эту команду в терминале, чтобы установить nasm
 
 ```brew install nasm```
 
-## Установка gcc для mac x 86:
+### Прописываем это, чтобы установить brew для mac X86
+```arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
+
+
 [источник](https://github.com/orgs/Homebrew/discussions/3526)
+ 
 
-### Установка brew для mac X86
-```arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"``` 
-
-### Псевдоним для скачанного brew, чтобы он не путался с оригинальным
+### Прописываем это, чтобы создать псевдоним для скачанного brew, чтобы он не путался с оригинальным
 ``` alias ibrew='arch -x86_64 /usr/local/bin/brew'```
 
-### Установка gcc для X86
+### Прописываем это, чтобы установить gcc для X86
+
+
 ```ibrew install gcc```
--------------------------------------------------------------------------------------------------------------
-## Как запускать
+# Компилляция и линковка
+
 ### Объектый для *.c
-```arch -x86_64 gcc -c haha.cpp```
+```arch -x86_64 gcc -c NAME.c```
 
 ### Объектный для *.s
-```nasm -f macho64 func.s```
+```nasm -f macho64 NAME.s```
 
-### Компилляция в исполняемый файл
+### Линковка в исполняемый файл
 
 ``` arch -x86_64 gcc your_object_files_compiled_with_gcc -o main```
+
+
 # Дебаг через консоль:
-просто lldb
+
+* заходим в директорию проекта
+* ```lldb RUN_FILE_NAME```
+* ```b main```
+* ```run```
+* ```s``` to step next
+
+# Важно!!!!!!!!! В мейн файле .c использовать ```exit(0)``` вместо ```return 0```
 
 # Дебаг не через консоль это ебаный пиздец! оно вам реально не надо
 ![5](/images/5.png)
