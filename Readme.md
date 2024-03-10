@@ -1,5 +1,6 @@
 # Как слинковать *.cpp и *.s для X86 на mac m2
 
+## Нужно установить brew
 ## Установка nasm
 
 ```brew install nasm```
@@ -29,11 +30,13 @@
 # Дебаг через консоль:
 просто lldb
 
-# Дебаг не через консоль это ебаный пиздец
+# Дебаг не через консоль это ебаный пиздец!
+
 ## Варианты:
-* Сертифицировать скачанный gdb
+* Сертифицировать скачанный gdb(не получилось)
   
    [источник](https://dev.to/jasonelwood/setup-gdb-on-macos-in-2020-489k)
+
 * Поставить ghidra и использовать lldb 
   
 
@@ -41,16 +44,18 @@
   [два сайт](https://www.reddit.com/r/ghidra/comments/t0dmqm/debug_libldb_java_missing_macos/0)
 
 
-  [три сайт](https://lachy.io/articles/properly-installing-ghidra-on-an-m1-mac)
-
 * Ставим гидру   [как тут](https://lachy.io/articles/properly-installing-ghidra-on-an-m1-mac)
 
-она ставится в /opt/homebrew/Caskroom
+она ставится сама в /opt/homebrew/Caskroom
 
-gradle ставится сюда /opt/homebrew/Cellar
+gradle ставится сюда сама /opt/homebrew/Cellar
+писать ниче не надо, это подсказка
 
-## Настройка lldb
+## запуск гидры
+```cd /opt/homebrew/Caskroom/ghidra/11.0.1-20240130/ghidra_11.0.1_PUBLIC/```
+```./ghidraRun```
 
+Получаем ошибку:
 java.lang.RuntimeException: Agent terminated with error: no lldb in java.library.path: 
 /Users/anzhiday/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/E
 xtensions:/usr/lib/java:.
@@ -65,44 +70,27 @@ libl...SBDebugger_eBroadcastBitProgress_get(Native Method)
 	at agent.lldb.gadp.impl.LldbClientThreadExecutor.init(LldbClientThreadExecutor.java:50)
 	at agent.lldb.gadp.impl.AbstractClientThreadExecutor.run(AbstractClientThreadExecutor.java:95)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-
 ---------------------------------------------------
 Build Date: 2024-Jan-30 1212 EST
 Ghidra Version: 11.0.1
 Java Home: /Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home
-JVM Version: Microsoft 21.0.2
+JVM Version: Microsoft 21.0.2 
 
 
-
+## Настройка lldb
 
 ```/Users/anzhiday/Downloads/ghidra_11.0.1_PUBLIC/Ghidra/Debug/Debugger-swig-lldb```
 
-тут нужно запустить
-билдим
+тут нужно запустить sh скрипт
+
+разрешаем изменения
+
+![1](/images/1.png)
 
 
-run gidra
-
-
-Last login: Sun Mar 10 02:01:38 on ttys008
-anzhiday@MacBook-Air ~ % ./ghidraRun                                          
-zsh: no such file or directory: ./ghidraRun
-anzhiday@MacBook-Air ~ % cd /opt/homebrew/Caskroom/ghidra/11.0.1-20240130      
-anzhiday@MacBook-Air 11.0.1-20240130 % cd /opt/homebrew/Caskroom/ghidr
-cd: no such file or directory: /opt/homebrew/Caskroom/ghidr
-anzhiday@MacBook-Air 11.0.1-20240130 % cd /opt/homebrew/Caskroom/ghidra/11.0.1-20240130/ghidra_11.0.1_PUBLIC/
-anzhiday@MacBook-Air ghidra % cd ghidra_11.0.1_PUBLIC         
-cd: no such file or directory: ghidra_11.0.1_PUBLIC
-anzhiday@MacBook-Air ghidra % ./ghidraRun                                     
-zsh: no such file or directory: ./ghidraRun
-anzhiday@MacBook-Air ghidra % cd ghidra_11.0.1_PUBLIC
-cd: no such file or directory: ghidra_11.0.1_PUBLIC
-anzhiday@MacBook-Air ghidra % cd 11.0.1-20240130
-anzhiday@MacBook-Air 11.0.1-20240130 % cd ghidra_11.0.1_PUBLIC
-anzhiday@MacBook-Air ghidra_11.0.1_PUBLIC % ./ghidraRun                     
-anzhiday@MacBook-Air ghidra_11.0.1_PUBLIC % 
-
-конфиденциальность->доступ к диску->терминал
+![2](/images/2.png)
+![3](/images/3.png)
+![4](/images/4.png)
 
 ```xattr -d com.apple.quarantine ./macos_debugger_lldb_build_from_brew.sh```
 
@@ -112,9 +100,11 @@ anzhiday@MacBook-Air ghidra_11.0.1_PUBLIC %
 и меняем 
 пишем поеботу без пробелов ебатб ахуеть
 
-  [как тут](https://fossies.org/linux/ghidra/Ghidra/Debug/Debugger-swig-lldb/InstructionsForBuildingLLDBInterface.txt)
+```GHIDRA_INSTALL_DIR='/opt/homebrew/Caskroom/ghidra/11.0.1-20240130/ghidra_11.0.1_PUBLIC'```
 
-GHIDRA_INSTALL_DIR='/opt/homebrew/Caskroom/ghidra/11.0.1-20240130/ghidra_11.0.1_PUBLIC'
+  [лучше полностью посмотреть инструкцию](https://fossies.org/linux/ghidra/Ghidra/Debug/Debugger-swig-lldb/InstructionsForBuildingLLDBInterface.txt)
+
+
 
 выполняем эту хуйню
 
@@ -129,5 +119,6 @@ GHIDRA_INSTALL_DIR='/opt/homebrew/Caskroom/ghidra/11.0.1-20240130/ghidra_11.0.1_
 
 Telegram: @azhkov
 
+Может полезные ссылки
 https://github.com/NationalSecurityAgency/ghidra/issues/4035
 https://github.com/NationalSecurityAgency/ghidra/issues/6095
