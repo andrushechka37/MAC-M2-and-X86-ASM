@@ -30,7 +30,8 @@
 # Дебаг через консоль:
 просто lldb
 
-# Дебаг не через консоль это ебаный пиздец!
+# Дебаг не через консоль это ебаный пиздец! оно вам реально не надо
+![5](/images/5.png)
 
 ## Варианты:
 * Сертифицировать скачанный gdb(не получилось)
@@ -117,8 +118,12 @@ JVM Version: Microsoft 21.0.2
 теперь мы получаем новую ошибку, которую я не знаю как фиксить
 
 
+
+java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException at ghidra.debug.api.target.Target$ActionEntry.get(Target.java:121) at ghidra.debug.api.target.Target$ActionEntry.run(Target.java:104) at ghidra.app.plugin.core.debug.gui.control.TargetActionTask.run(TargetActionTask.java:33) at ghidra.util.task.Task.monitoredRun(Task.java:134) at ghidra.util.task.TaskRunner.lambda$startTaskThread$0(TaskRunner.java:106) at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) at java.base/java.lang.Thread.run(Thread.java:1583) Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:396) at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2073) at ghidra.debug.api.target.Target$ActionEntry.get(Target.java:118) ... 7 more Caused by: java.util.concurrent.TimeoutException at java.base/java.util.concurrent.CompletableFuture$Timeout.run(CompletableFuture.java:2920) at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ... 3 more --------------------------------------------------- Build Date: 2024-Jan-30 1212 EST Ghidra Version: 11.0.1 Java Home: /Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home JVM Version: Microsoft 21.0.2 OS: Mac OS X 14.3.1 aarch64
+
 Telegram: @azhkov
 
 Может полезные ссылки
+
 https://github.com/NationalSecurityAgency/ghidra/issues/4035
 https://github.com/NationalSecurityAgency/ghidra/issues/6095
