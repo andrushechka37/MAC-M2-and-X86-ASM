@@ -1,6 +1,7 @@
 # Покупаем сервер
 
 ### Регистрируемся на сайте [тут](https://timeweb.cloud)
+![10](/images/10.png)
 ### Покупаем сервер такого плана
 ![7](/images/7.png)
 ### Скачиваем расширение на vscode ()картинка
@@ -281,3 +282,8 @@ Telegram: @azhkov
 
 https://github.com/NationalSecurityAgency/ghidra/issues/4035
 https://github.com/NationalSecurityAgency/ghidra/issues/6095
+
+
+git add. 
+git commit -m "hui"
+git push
