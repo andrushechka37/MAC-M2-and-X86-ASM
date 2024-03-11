@@ -4,63 +4,51 @@
 ![10](/images/10.png)
 ![10](/images/11.png)
 ### Покупаем сервер такого плана
+> [!CAUTION]
+> ### бэкапы по желанию
+> ### Никакие другие настройки можно не трогать
 ![7](/images/7.png)
-### Скачиваем расширение на vscode ()картинка
+### Скачиваем расширение на vscode
 ![8](/images/9.png)
 
-#### бэкапы по желанию
-#### Никакие другие настройки можно не трогать
 
 ## Подключаем сервер
 
 ![9](/images/8.png)
 
 
-куча картинок
+![8](/images/13.png)
+![8](/images/14.png)
 
-заходим в сайт картинка 
+## Чтобы найти ssh ключ заходим на сайт
+![8](/images/15.png)
+![8](/images/16.png)
 
-вводим ссш картинка
+## вводим ssh в нужное поле
 
-жмем ссш конфиг самый первый
-
-опять жмем
+## Будут предложены настройки конфигов, выыбираем самый верхний
+## опять подклбючаемся к узлу
 ![9](/images/8.png)
-опять подклбючаемся к узлу
 
-жмем на цифирки
+## Жмем на появившиеся цифирки
+![9](/images/17.png)
 
-просят ввести рут картинка откуда брать
-
-
-вводим пароль с сайта картинка
-
-
-apt install g++
-apt install nasm
-apt install lldb
-apt install make 
+## Будет выведено новое окно
+## Прописываем пароль root, берем его отсюда
+![9](/images/18.png)
 
 
-## пример кода и мейкфайла:
-C
-```C
-#include <stdio.h>
-#include <stdlib.h>
+## качаем все расширения для Vscoda которые были
 
-extern void hui();
+# Тест:
 
-int main() {
-    printf("\n>>> main(): start\n\n");
-
-    int a = 85, b = 14;
-
-    hui();
-
-    printf("\n<<< main(): end\n\n");
-    return 0;
-}
+## Устанавливаем gcc и nasm
 ```
+apt install gсс
+apt install nasm
+```
+
+## Создаем 1-nasm.s
 ```
 section .text
 
@@ -80,18 +68,35 @@ Msg:        db "__Hllwrld", 0x0a
 MsgLen      equ $ - Msg
 ```
 
-Make:
-```Makefile
-.Phony print: main.o 1-nasm.o
-	ld -s -o main.o 1-nasm.o -o main
+## создаем main.c
+```C
+#include <stdio.h>
+#include <stdlib.h>
 
-main.o: main.c
-	gcc -no-pie main.c main.o
+extern void hui();
 
-1-nasm.o: 1-nasm.s
-	nasm -f elf64 -l 1-nasm.lst 1-nasm.s
+int main() {
+    printf("\n>>> main(): start\n\n");
+
+    int a = 85, b = 14;
+
+    hui();
+
+    printf("\n<<< main(): end\n\n");
+    return 0;
+}
 ```
+## И пишем в консоль
 
+`nasm -f elf64 -l 1-nasm.lst 1-nasm.s`
+
+`gcc -no-pie main.c 1-nasm.o`
+
+`./a.out`
+## Должно вывести это
+
+
+![9](/images/20.png)
 
 
 
