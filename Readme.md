@@ -27,7 +27,7 @@
 ## вводим ssh в нужное поле
 
 ## Будут предложены настройки конфигов, выыбираем самый верхний
-## опять подклбючаемся к узлу
+## Опять подключаемся к узлу
 ![9](/images/8.png)
 
 ## Жмем на появившиеся цифирки
@@ -41,6 +41,8 @@
 ## качаем все расширения для Vscoda которые были
 
 # Тест:
+
+## Клоним репо через ssh(чтоб можно было оттуда пушить)
 
 ## Устанавливаем gcc и nasm
 ```
@@ -326,9 +328,6 @@ Telegram: @azhkov
 Может полезные ссылки
 
 https://github.com/NationalSecurityAgency/ghidra/issues/4035
+
 https://github.com/NationalSecurityAgency/ghidra/issues/6095
 
-
-git add. 
-git commit -m "hui"
-git push
