@@ -7,7 +7,7 @@
 # настраиваем хуету от сюда
 [вот это](https://www.businessnewsdaily.com/11035-how-to-use-x11-forwarding.html)
 
-# качаем кварц из файла
+# Качаем кварц из файла [XQuartz-2.7.11.dmg](/XQuartz-2.7.11.dmg)
 
 # Пишем это
 `defaults write org.macports.X11 enable_iglx -bool true`
@@ -62,3 +62,13 @@ find / -name "xauth"
  apt install xeyes
  service iptables stop
  LIBGL_ALWAYS_INDIRECT=1 ./sfml_example
+
+ [хуй](/Readme.md)
+
+
+
+ ##### Секретный гайд как использовать copy/paste в окне xquartz
+ ##### Прописываем настройки
+ ![31](/images/41.png)
+ ![31](/images/42.png)
+ ##### Вставлять через `option + клик мыши`
