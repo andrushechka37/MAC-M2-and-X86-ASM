@@ -1,15 +1,15 @@
 # Как прокидывать X11 трансляцию на мак для сервака + sfml
 
 # Устанавливаем sfml 
-# Здесь и далее прописываем все на сервере
+# Здесь и далее прописываем все на сервере (на фиолетовой хуйне просто enter нажимаем)
 `sudo apt-get install libsfml-dev`
-# Устанавливаем xauth -- плагин под управлением Bukkit, создающий внутрисерверную регистрацию пользователям.
+# Устанавливаем xauth
 `apt install xauth`
 
 # Сначала прописываем это
 ` vim /etc/ssh/sshd_config`
 
-# И выставляем параметры как тут
+# И выставляем параметры как тут (чтобы начать изменить файл нажмите i) 
 ```
 UsePAM yes
 
@@ -34,7 +34,9 @@ PrintMotd no
 #ChrootDirectory none
 #VersionAddendum none
 ```
-# Выйти :q
+# Выйти: ecs + `:wq`
+
+# Прописываем в терминал: 
 
 `systemctl restart ssh.service`
 
@@ -43,18 +45,19 @@ PrintMotd no
 
 
 
-# Качаем кварц из файла на мак[XQuartz-2.7.11.dmg](/XQuartz-2.7.11.dmg)
+# Качаем кварц из файла на мак [XQuartz-2.7.11.dmg](/XQuartz-2.7.11.dmg)
 
-# Reebotаем мак + выход из пользователя
+# Rebootаем мак + перезаходим в пользователя(как на картинке)
+![ч](/images/91.png)
 
-# Пишем это в маковском терминале
+# Пишем это в `маковском` терминале
 `defaults write org.macports.X11 enable_iglx -bool true`
 
 # Отрываем в launchpadе приложение xqauatz
 ## Нажимаем на иконку
 
 
-# Заходим в терминал с английской раскладкой!!! иначе после входа на сервер не будет работать клава
+# Заходим в терминал с английской раскладкой!!! иначе после входа на сервер не будет работать клавиатура
 
 ## Терминал может сам не открыться, поэтому открываем вручную
 ![ч](/images/74.png)
@@ -62,31 +65,53 @@ PrintMotd no
 ## Откроется такое окно
 ![ч](/images/76.png)
 
-# В него прописываем в него команду вида
+# В него прописываем в него команду `не надо это копировать цифры у вас другие`
+
+# `Флаги блять не забываем`
+
+# `ssh -X -v root@90.156.208.69`
 # Ваши цифирки берем отсюда
 ![v](/images/81.png)
 
-`ssh -X -v root@90.156.208.69`
+
+ # Как использовать copy/paste в окне xquartz
+ # Прописываем настройки
+ ![31](/images/41.png)
+ ![31](/images/42.png)
+ # Вставлять через `option + клик мыши`
+
+
 
 # Вводим пароль 
+
 # Проверка на на работоспособность:
 
-# Прописываем в консоль терминала xquartz
+## Прописываем в консоль терминала xquartz
 
-`xeyes`
+### `xeyes`
 
 # Должно создать такое окно:
 ![v](/images/82.png)
 
 # X11 трансляция настроена!
 
+# Настраиваем sfml:
 
+# Пишем это в `маковском` терминале:
+### `defaults find xquartz | grep domain`
 
+# Эту команду не просто копируем!!! Заменяем выражение в скобках на то что вам выдаст в этом месте
+![v](/images/92.png)
+### `defaults write ((org.xquartz.x11)) enable_iglx -bool true`
+
+# Перезагружаем мак
+# Заново заходим в кварц и на сервер
 
 
 
 
 # Тест sfml:
+# Имя: sfml_example.cpp иначе переписывайте компилляцию сами
 ```C++
 #include <SFML/Graphics.hpp>
 
@@ -115,31 +140,14 @@ int main()
 ```
 
 # Компиллирование
-```g++ sfml_example.cpp -o sfml_example -lsfml-graphics -lsfml-window -lsfml-system```
-
-`LIBGL_ALWAYS_INDIRECT=1 ./sfml_example`
-# Источники:
-
-find / -name "xauth"
- sudo apt install vim
- vim /etc/ssh/sshd_config
- systemctl restart ssh.service
- printenv | grep DISPLAY
- brew install --cask xquartz
- service sshd restart
- apt install xeyes
- service iptables stop
- LIBGL_ALWAYS_INDIRECT=1 ./sfml_example
+## ```g++ sfml_example.cpp -o sfml_example -lsfml-graphics -lsfml-window -lsfml-system```
 
 
+# `LIBGL_ALWAYS_INDIRECT=1 ./sfml_example` - это в терминал кварца
 
- ##### Секретный гайд как использовать copy/paste в окне xquartz
- ##### Прописываем настройки
- ![31](/images/41.png)
- ![31](/images/42.png)
- ##### Вставлять через `option + клик мыши`
+# Должно вывести зеленый кружок
 
-
-
+### Источники
 [вот это](https://www.businessnewsdaily.com/11035-how-to-use-x11-forwarding.html)
 [two](https://unix.stackexchange.com/questions/429760/opengl-rendering-with-x11-forwarding)
+[tree](https://www.bsc.es/supportkc/docs/Appendix/x11/)
